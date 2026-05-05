@@ -96,5 +96,5 @@ Demostrar conocimientos de:
 
 👨‍💻 Equipo
 
-- Elisabete
-- Neuza
+- Elisabete Barbosa
+- Neuza Pereira
