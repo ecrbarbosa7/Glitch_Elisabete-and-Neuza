@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap');
+
+/* CORES PRINCIPAIS */
+:host {
+  --bg: #060707;
+  --text: #f2f5f5;
+  --muted: #9ca7a7;
+  --neon: #76ffb3;
+  --line: rgba(255,255,255,0.08);
+
+  display: block;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at left center, rgba(118,255,179,0.08), transparent 25%),
+    linear-gradient(180deg, #050606 0%, #0a0d0d 100%);
+  color: var(--text);
+  font-family: "Orbitron", sans-serif;
+}
+
+/* BASE */
+* {
+  box-sizing: border-box;
+}
+
+.home-page {
+  min-height: 100vh;
+  padding: 24px 5%;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 8px rgba(118,255,179,0.5))
+    brightness(1.1);
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.logo small {
+  color: var(--neon);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* MENU */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+nav a:hover {
+  color: var(--neon);
+}
+
+/* FAVORITES BUTTON */
+nav a:last-child {
+  color: var(--neon);
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(118,255,179,0.35);
+  background: rgba(118,255,179,0.08);
+}
+
+/* HERO */
+.hero {
+  min-height: calc(100vh - 95px);
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.radar-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hud-video{
+  width:420px;
+  opacity:.88;
+
+  mix-blend-mode: screen;
+
+  filter:
+    drop-shadow(0 0 18px rgba(118,255,179,.18));
+}
+
+/* TEXTO */
+.hero-text {
+  max-width: 620px;
+}
+
+.hero-text > p:first-child {
+  color: var(--neon);
+  letter-spacing: 4px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+/* TÍTULO GLITCH */
+.hero-text h1 {
+  position: relative;
+  margin: 0;
+  font-size: clamp(64px, 9vw, 110px);
+  line-height: 0.95;
+  letter-spacing: 7px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.hero-text h1::before,
+.hero-text h1::after {
+  content: "GLITCH";
+  position: absolute;
+  inset: 0;
+  color: var(--neon);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.hero-text h1::before {
+  transform: translate(3px, -2px);
+  clip-path: inset(0 0 55% 0);
+}
+
+.hero-text h1::after {
+  transform: translate(-3px, 2px);
+  clip-path: inset(45% 0 0 0);
+}
+
+.hero-text h2 {
+  margin: 18px 0 14px;
+  font-size: clamp(26px, 4vw, 42px);
+}
+
+.description {
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+/* ESCONDER BOTÕES DE BAIXO */
+.hero-buttons,
+.tags {
+  display: none;
+}
+
+/* ANIMAÇÕES */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 35px;
+    padding-top: 40px;
+  }
+
+  .radar {
+    margin: 0 auto;
+    width: 280px;
+  }
+}
