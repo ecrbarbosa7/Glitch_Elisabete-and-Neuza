@@ -11,7 +11,7 @@
   display: block;
   min-height: 100vh;
   background:
-    radial-gradient(circle at left center, rgba(118,255,179,0.08), transparent 25%),
+    radial-gradient(circle at right center, rgba(118,255,179,0.08), transparent 25%),
     linear-gradient(180deg, #050606 0%, #0a0d0d 100%);
   color: var(--text);
   font-family: "Orbitron", sans-serif;
@@ -47,21 +47,12 @@
   width: 42px;
   height: 42px;
   object-fit: contain;
-  filter:
-    drop-shadow(0 0 8px rgba(118,255,179,0.5))
-    brightness(1.1);
+ 
 }
 
 .logo h2 {
-  margin: 0;
-  font-size: 24px;
-  letter-spacing: 3px;
-  color: white;
-}
-
-.logo small {
-  color: var(--neon);
-  font-size: 11px;
+   color: var(--neon);
+  font-size: 15px;
   letter-spacing: 1px;
 }
 
@@ -97,25 +88,42 @@ nav a:last-child {
   min-height: calc(100vh - 95px);
   display: grid;
   grid-template-columns: 1fr 1.1fr;
-  gap: 45px;
+  gap: 70px;
   align-items: center;
 }
 
-.radar-container{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.radar-container {
+  position: relative;
+  width: 520px;
+  height: 290px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: transparent;
+  box-shadow: none;
+  
 }
 
-.hud-video{
-  width:420px;
-  opacity:.88;
-
-  mix-blend-mode: screen;
-
-  filter:
-    drop-shadow(0 0 18px rgba(118,255,179,.18));
+.radar-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(6,7,7,0.75) 0%,
+    rgba(6,7,7,0.35) 18%,
+    transparent 45%,
+    rgba(6,7,7,0.15) 100%
+  );
+  pointer-events: none;
 }
+
+.hud-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 
 /* TEXTO */
 .hero-text {
@@ -141,7 +149,6 @@ nav a:last-child {
   text-transform: uppercase;
 }
 
-.hero-text h1::before,
 .hero-text h1::after {
   content: "GLITCH";
   position: absolute;
@@ -172,55 +179,4 @@ nav a:last-child {
   font-size: 16px;
   line-height: 1.7;
   max-width: 620px;
-}
-
-/* ESCONDER BOTÕES DE BAIXO */
-.hero-buttons,
-.tags {
-  display: none;
-}
-
-/* ANIMAÇÕES */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.35);
-  }
-}
-
-/* RESPONSIVO */
-@media (max-width: 900px) {
-  .navbar {
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-  }
-
-  .hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 35px;
-    padding-top: 40px;
-  }
-
-  .radar {
-    margin: 0 auto;
-    width: 280px;
-  }
 }
