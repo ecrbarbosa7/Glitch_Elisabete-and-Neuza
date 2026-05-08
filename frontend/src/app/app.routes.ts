@@ -37,5 +37,6 @@ export const routes: Routes = [
     path: 'favorites',
     component: FavoritosComponent
   }
+ 
 
 ];

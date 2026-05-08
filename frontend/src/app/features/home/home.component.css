@@ -1,94 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap');
-
-/* CORES PRINCIPAIS */
-:host {
-  --bg: #060707;
-  --text: #f2f5f5;
-  --muted: #9ca7a7;
-  --neon: #76ffb3;
-  --line: rgba(255,255,255,0.08);
-
-  display: block;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at right center, rgba(118,255,179,0.08), transparent 25%),
-    linear-gradient(180deg, #050606 0%, #0a0d0d 100%);
-  color: var(--text);
-  font-family: "Orbitron", sans-serif;
-}
-
-/* BASE */
-* {
-  box-sizing: border-box;
-}
-
-.home-page {
-  min-height: 100vh;
-  padding: 24px 5%;
-}
-
-/* NAVBAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-
-/* LOGO */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.logo img {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
- 
-}
-
-.logo h2 {
-   color: var(--neon);
-  font-size: 15px;
-  letter-spacing: 1px;
-}
-
-/* MENU */
-nav {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-}
-
-nav a {
-  color: var(--text);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-nav a:hover {
-  color: var(--neon);
-}
-
-/* FAVORITES BUTTON */
-nav a:last-child {
-  color: var(--neon);
-  padding: 9px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(118,255,179,0.35);
-  background: rgba(118,255,179,0.08);
-}
-
-/* HERO */
 .hero {
-  min-height: calc(100vh - 95px);
+  min-height: calc(110vh - 202px);
   display: grid;
   grid-template-columns: 1fr 1.1fr;
-  gap: 70px;
+  gap: 90px;
   align-items: center;
 }
 
@@ -100,10 +14,16 @@ nav a:last-child {
   border-radius: 28px;
   background: transparent;
   box-shadow: none;
-  
+  margin-left: 60px;
 }
 
-.radar-container::after {
+
+.hud-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
   content: "";
   position: absolute;
   inset: 0;
@@ -115,13 +35,6 @@ nav a:last-child {
     rgba(6,7,7,0.15) 100%
   );
   pointer-events: none;
-}
-
-.hud-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 
@@ -179,4 +92,57 @@ nav a:last-child {
   font-size: 16px;
   line-height: 1.7;
   max-width: 620px;
+}
+
+.footer {
+  width: 100%;
+  margin-top: 0px;
+  padding: 0 70px 12px;
+  box-sizing: border-box;
+}
+
+.footer-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin-bottom: 20px;
+}
+
+.footer-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  display: flex;
+  gap: 30px;
+}
+
+.footer-left p {
+  margin: 0;
+  color: #d1d5db;
+  font-size: 14px;
+}
+
+.footer-left span {
+  color: #76ffb3;
+  font-weight: bold;
+}
+
+.footer-right {
+  display: flex;
+  gap: 25px;
+}
+
+.footer-right a {
+  color: #76ffb3;
+  font-size: 22px;
+  transition: 0.3s;
+}
+
+.footer-right a:hover {
+  color: white;
+  transform: scale(1.2);
 }

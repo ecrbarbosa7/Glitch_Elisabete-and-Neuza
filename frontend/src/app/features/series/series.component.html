@@ -1,33 +1,17 @@
-<div class="movies-page">
-  <header class="navbar">
-    <div class="logo">
-      <img
-        src="https://i.pinimg.com/1200x/fe/5f/16/fe5f160b50bcf8d453a6952d8dff204b.jpg"
-        alt="Logo"
-        class="logo-image"
-      />
-      <h2>Neural Stream Active</h2>
-    </div>
-
-    <nav>
-      <a routerLink="/home">Home</a>
-      <a routerLink="/movies">Movies</a>
-      <a routerLink="/series">Series</a>
-      <a routerLink="/favorites">Favorites</a>
-      <a routerLink="/login" class="login-btn">Login/Register</a>
-    </nav>
-  </header>
-
+<div class="serie-page">
   <section class="featured">
     <div class="side-panel">
-      <h2>{{ selectedMovie.title }}</h2>
-      <p class="summary">{{ selectedMovie.summary }}</p>
+      <h2>{{ selectedSerie.title }}</h2>
+
+      <p class="summary">
+        {{ selectedSerie.summary }}
+      </p>
     </div>
 
     <div class="main-poster">
       <iframe
-        [src]="sanitizeUrl(selectedMovie.trailer)"
-        title="Movie Trailer"
+        [src]="sanitizeUrl(selectedSerie.trailer)"
+        title="Series Trailer"
         frameborder="0"
         allowfullscreen
       >
@@ -35,25 +19,38 @@
     </div>
 
     <div class="details-panel">
-      <p>Genre: {{ selectedMovie.genre }}</p>
-      <p>Year: {{ selectedMovie.year }}</p>
-      <p>Duration: {{ selectedMovie.duration }}</p>
+      <p>Genre: {{ selectedSerie.genre }}</p>
+
+      <p>Year: {{ selectedSerie.year }}</p>
+
+      <p>Duration: {{ selectedSerie.duration }}</p>
+
       <p>
-        Rating: {{ selectedMovie.rating }}
-        {{ getStars(selectedMovie.rating) }}
+        Rating: {{ selectedSerie.rating }}
+        {{ getStars(selectedSerie.rating) }}
       </p>
     </div>
   </section>
 
   <div class="movie-row">
-    <button
+    <div
       class="movie-card"
-      *ngFor="let movie of movies"
-      (click)="selectMovie(movie)"
-      [class.active]="movie === selectedMovie"
+      *ngFor="let serie of series"
+      (click)="selectSerie(serie)"
+      [class.active]="serie === selectedSerie"
     >
-      <img [src]="movie.image" [alt]="movie.title" />
-      <span>{{ movie.title }}</span>
-    </button>
+      <img [src]="serie.image" [alt]="serie.title" />
+
+      <span>{{ serie.title }}</span>
+
+      <button
+        type="button"
+        class="favorite-btn"
+        [class.active-favorite]="isFavorite(serie)"
+        (click)="toggleFavorite(serie); $event.stopPropagation()"
+      >
+        ♥
+      </button>
+    </div>
   </div>
 </div>

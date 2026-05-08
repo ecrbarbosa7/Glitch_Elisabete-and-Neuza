@@ -1,23 +1,4 @@
 <div class="movies-page">
-  <header class="navbar">
-    <div class="logo">
-      <img
-        src="https://i.pinimg.com/1200x/fe/5f/16/fe5f160b50bcf8d453a6952d8dff204b.jpg"
-        alt="Logo"
-        class="logo-image"
-      />
-      <h2>Neural Stream Active</h2>
-    </div>
-
-    <nav>
-      <a routerLink="/home">Home</a>
-      <a routerLink="/movies">Movies</a>
-      <a routerLink="/series">Series</a>
-      <a routerLink="/favorites">Favorites</a>
-      <a routerLink="/login" class="login-btn">Login/Register</a>
-    </nav>
-  </header>
-
   <section class="featured">
     <div class="side-panel">
       <h2>{{ selectedMovie.title }}</h2>
@@ -46,14 +27,26 @@
   </section>
 
   <div class="movie-row">
+
+  <div
+    class="movie-card"
+    *ngFor="let movie of movies"
+    (click)="selectMovie(movie)"
+    [class.active]="movie === selectedMovie"
+  >
+
+    <img [src]="movie.image" [alt]="movie.title" />
+    <span>{{ movie.title }}</span>
+
     <button
-      class="movie-card"
-      *ngFor="let movie of movies"
-      (click)="selectMovie(movie)"
-      [class.active]="movie === selectedMovie"
-    >
-      <img [src]="movie.image" [alt]="movie.title" />
-      <span>{{ movie.title }}</span>
-    </button>
+        type="button"
+        class="favorite-btn"
+        [class.active-favorite]="isFavorite(movie)"
+        (click)="toggleFavorite(movie); $event.stopPropagation()"
+      >
+        ♥
+      </button>
+
   </div>
+
 </div>

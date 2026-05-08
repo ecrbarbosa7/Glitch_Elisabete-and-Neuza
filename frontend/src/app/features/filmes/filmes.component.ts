@@ -12,6 +12,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class FilmesComponent {
 
+  
   constructor(private sanitizer: DomSanitizer) {}
 
   movies = [
@@ -101,4 +102,47 @@ trailer: 'https://www.youtube.com/embed/8hP9D6kZseM'
   sanitizeUrl(url: string) {
   return this.sanitizer.bypassSecurityTrustResourceUrl(url);
 }
+
+  toggleFavorite(item: any) {
+
+    const favorites = JSON.parse(
+      localStorage.getItem('favorites') || '[]'
+    );
+
+    const exists = favorites.find(
+      (fav: any) => fav.title === item.title
+    );
+
+    if (exists) {
+
+      const updated = favorites.filter(
+        (fav: any) => fav.title !== item.title
+      );
+
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify(updated)
+      );
+
+    } else {
+
+      favorites.push(item);
+
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify(favorites)
+      );
+    }
+  }
+   isFavorite(item: any) {
+
+  const favorites = JSON.parse(
+    localStorage.getItem('favorites') || '[]'
+  );
+
+  return favorites.some(
+    (fav: any) => fav.title === item.title
+  );
 }
+}
+

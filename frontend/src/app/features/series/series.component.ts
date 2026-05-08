@@ -14,8 +14,9 @@ export class SeriesComponent {
 
   constructor(private sanitizer: DomSanitizer) {}
 
- movies = [
-  {
+  series = [
+
+    {
     title: 'Severance',
     summary: 'Employees discover dark secrets behind a mysterious work-life separation procedure.',
     genre: 'Sci-Fi',
@@ -75,12 +76,13 @@ export class SeriesComponent {
     image: 'https://i.pinimg.com/736x/48/8a/34/488a343990e18fde5fa47642f7a15167.jpg',
     trailer: 'https://www.youtube.com/embed/bRdkRQzcrrc'
   }
-];
 
-selectedMovie = this.movies[0];
+  ];
 
-  selectMovie(movie: any) {
-    this.selectedMovie = movie;
+  selectedSerie = this.series[0];
+
+  selectSerie(serie: any) {
+    this.selectedSerie = serie;
   }
 
   getStars(rating: number) {
@@ -90,4 +92,46 @@ selectedMovie = this.movies[0];
   sanitizeUrl(url: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+
+  toggleFavorite(item: any) {
+
+    const favorites = JSON.parse(
+      localStorage.getItem('favorites') || '[]'
+    );
+
+    const exists = favorites.find(
+      (fav: any) => fav.title === item.title
+    );
+
+    if (exists) {
+
+      const updated = favorites.filter(
+        (fav: any) => fav.title !== item.title
+      );
+
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify(updated)
+      );
+
+    } else {
+
+      favorites.push(item);
+
+      localStorage.setItem(
+        'favorites',
+        JSON.stringify(favorites)
+      );
+    }
+  }
+  isFavorite(item: any) {
+
+  const favorites = JSON.parse(
+    localStorage.getItem('favorites') || '[]'
+  );
+
+  return favorites.some(
+    (fav: any) => fav.title === item.title
+  );
+}
 }

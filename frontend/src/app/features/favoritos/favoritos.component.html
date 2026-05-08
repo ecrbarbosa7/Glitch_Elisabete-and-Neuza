@@ -1,1 +1,28 @@
-<p>favoritos works!</p>
+<div class="favorites-page">
+
+  <h1>My Favorites</h1>
+  <p class="subtitle">Your saved sci-fi movies and series</p>
+
+  <div class="empty" *ngIf="favorites.length === 0">
+    <h2>No favorites yet</h2>
+    <p>Go to Movies or Series and click the heart ♥ to add one.</p>
+  </div>
+
+  <div class="favorites-grid" *ngIf="favorites.length > 0">
+
+    <div class="favorite-card" *ngFor="let item of favorites">
+      <img [src]="item.image" [alt]="item.title" />
+
+      <div class="favorite-info">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.summary }}</p>
+
+        <button (click)="removeFavorite(item)">
+          Remove
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
