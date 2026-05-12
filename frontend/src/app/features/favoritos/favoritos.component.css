@@ -159,13 +159,21 @@
 
 @media (max-width: 768px) {
   .favorites-page {
-    padding: 90px 5% 40px;
+    padding: 20px 3% 40px;
   }
 
   .favorites-header h1 {
     font-size: 34px;
   }
 
+  .favorites-grid {
+    grid-template-columns: repeat(2, minmax(130px.1fr));
+  }
+}
+
+/*ecras pequenos */
+
+@media (max-width: 480px) {
   .favorites-grid {
     grid-template-columns: 1fr;
   }
