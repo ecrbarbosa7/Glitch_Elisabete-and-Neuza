@@ -1,4 +1,58 @@
-<input type="text" placeholder="Username" [(ngModel)]="username">
-<input type="password" placeholder="Password" [(ngModel)]="password">
+<div class="auth-page">
 
-<button (click)="login()">Login</button>
+  <div class="auth-card">
+
+    <div class="logo-section">
+      <img src="assets/logo-radar.jpg" alt="logo" />
+
+      <h1>GLITCH</h1>
+
+      <p>Access the Sci-Fi Platform</p>
+    </div>
+
+    <form
+      class="form-section"
+      (ngSubmit)="login()"
+      autocomplete="on"
+    >
+
+      <h2>Login</h2>
+
+      <input
+        type="text"
+        name="loginInput"
+        placeholder="Username or Email"
+        [(ngModel)]="loginInput"
+        autocomplete="username"
+        required
+      />
+
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        autocomplete="current-password"
+        required
+      />
+
+      <button type="submit">
+        Access Platform
+      </button>
+
+      <p *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </p>
+
+      <div class="bottom-link">
+        Don’t have an account?
+        <a routerLink="/register">
+          Register here
+        </a>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

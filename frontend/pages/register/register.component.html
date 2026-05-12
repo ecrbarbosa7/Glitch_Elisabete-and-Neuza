@@ -1,0 +1,76 @@
+<div class="auth-page">
+  <div class="auth-card">
+
+    <div class="logo-section">
+      <img src="assets/logo-radar.jpg" alt="logo" />
+      <h1>GLITCH</h1>
+      <p>Create your Sci-Fi account</p>
+    </div>
+
+    <form class="form-section" (ngSubmit)="register()" autocomplete="on">
+      <h2>Register</h2>
+
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        [(ngModel)]="name"
+        autocomplete="given-name"
+        required
+      />
+
+      <input
+        type="text"
+        name="surname"
+        placeholder="Surname"
+        [(ngModel)]="surname"
+        autocomplete="family-name"
+        required
+      />
+
+      <input
+        type="text"
+        name="address"
+        placeholder="Address"
+        [(ngModel)]="address"
+        autocomplete="street-address"
+        required
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="email"
+        autocomplete="email"
+        required
+      />
+
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        autocomplete="new-password"
+        minlength="6"
+        required
+      />
+
+      <button type="submit">Create Account</button>
+
+      <p *ngIf="successMessage" class="success">
+        {{ successMessage }}
+      </p>
+
+      <p *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </p>
+
+      <div class="bottom-link">
+        Already registered?
+        <a routerLink="/login">Login here</a>
+      </div>
+    </form>
+
+  </div>
+</div>
