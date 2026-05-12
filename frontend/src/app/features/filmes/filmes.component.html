@@ -1,1 +1,52 @@
-<p>filmes works!</p>
+<div class="movies-page">
+  <section class="featured">
+    <div class="side-panel">
+      <h2>{{ selectedMovie.title }}</h2>
+      <p class="summary">{{ selectedMovie.summary }}</p>
+    </div>
+
+    <div class="main-poster">
+      <iframe
+        [src]="sanitizeUrl(selectedMovie.trailer)"
+        title="Movie Trailer"
+        frameborder="0"
+        allowfullscreen
+      >
+      </iframe>
+    </div>
+
+    <div class="details-panel">
+      <p>Genre: {{ selectedMovie.genre }}</p>
+      <p>Year: {{ selectedMovie.year }}</p>
+      <p>Duration: {{ selectedMovie.duration }}</p>
+      <p>
+        Rating: {{ selectedMovie.rating }}
+        {{ getStars(selectedMovie.rating) }}
+      </p>
+    </div>
+  </section>
+
+  <div class="movie-row">
+
+  <div
+    class="movie-card"
+    *ngFor="let movie of movies"
+    (click)="selectMovie(movie)"
+    [class.active]="movie === selectedMovie"
+  >
+
+    <img [src]="movie.image" [alt]="movie.title" />
+    <span>{{ movie.title }}</span>
+
+    <button
+        type="button"
+        class="favorite-btn"
+        [class.active-favorite]="isFavorite(movie)"
+        (click)="toggleFavorite(movie); $event.stopPropagation()"
+      >
+        ♥
+      </button>
+
+  </div>
+
+</div>

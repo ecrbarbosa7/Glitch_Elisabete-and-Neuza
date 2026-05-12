@@ -1,1 +1,56 @@
-<p>series works!</p>
+<div class="serie-page">
+  <section class="featured">
+    <div class="side-panel">
+      <h2>{{ selectedSerie.title }}</h2>
+
+      <p class="summary">
+        {{ selectedSerie.summary }}
+      </p>
+    </div>
+
+    <div class="main-poster">
+      <iframe
+        [src]="sanitizeUrl(selectedSerie.trailer)"
+        title="Series Trailer"
+        frameborder="0"
+        allowfullscreen
+      >
+      </iframe>
+    </div>
+
+    <div class="details-panel">
+      <p>Genre: {{ selectedSerie.genre }}</p>
+
+      <p>Year: {{ selectedSerie.year }}</p>
+
+      <p>Duration: {{ selectedSerie.duration }}</p>
+
+      <p>
+        Rating: {{ selectedSerie.rating }}
+        {{ getStars(selectedSerie.rating) }}
+      </p>
+    </div>
+  </section>
+
+  <div class="movie-row">
+    <div
+      class="movie-card"
+      *ngFor="let serie of series"
+      (click)="selectSerie(serie)"
+      [class.active]="serie === selectedSerie"
+    >
+      <img [src]="serie.image" [alt]="serie.title" />
+
+      <span>{{ serie.title }}</span>
+
+      <button
+        type="button"
+        class="favorite-btn"
+        [class.active-favorite]="isFavorite(serie)"
+        (click)="toggleFavorite(serie); $event.stopPropagation()"
+      >
+        ♥
+      </button>
+    </div>
+  </div>
+</div>
