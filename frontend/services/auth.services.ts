@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/auth';
+  private apiUrl = 'http://localhost:3000/api/auth';
+  private favoritesUrl = 'http://localhost:3000/api/favorites';
 
   constructor(private http: HttpClient) {}
 
@@ -39,5 +40,36 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   }
-  
+
+  private getAuthHeaders() {
+    const token = this.getToken();
+
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      })
+    };
+  }
+
+  getFavorites() {
+    return this.http.get<any>(
+      this.favoritesUrl,
+      this.getAuthHeaders()
+    );
+  }
+
+  addFavorite(item: any) {
+    return this.http.post<any>(
+      this.favoritesUrl,
+      item,
+      this.getAuthHeaders()
+    );
+  }
+
+  removeFavorite(title: string) {
+    return this.http.delete<any>(
+      `${this.favoritesUrl}/${encodeURIComponent(title)}`,
+      this.getAuthHeaders()
+    );
+  }
 }

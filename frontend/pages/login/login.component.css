@@ -97,28 +97,99 @@
   margin-top: 8px;
   box-shadow: 0 0 18px rgba(118,255,179,0.35);
 }
+.form-section button {
+  width: 100%;
+  padding: 15px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(118, 255, 179, 0.45);
+
+  background: rgba(118, 255, 179, 0.08);
+
+  color: #76ffb3;
+
+  font-weight: 800;
+  font-size: 15px;
+  font-family: "Orbitron", sans-serif;
+
+  cursor: pointer;
+
+  margin-top: 8px;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    0 0 18px rgba(118, 255, 179, 0.15);
+}
 
 .form-section button:hover {
+  color: white;
+
+  background: rgba(118, 255, 179, 0.25);
+
+  box-shadow:
+    0 0 14px rgba(118, 255, 179, 0.8);
+
   transform: translateY(-2px);
 }
 
+/* TEXTO DE BAIXO */
+
 .bottom-link {
-  margin-top: 22px;
+  margin-top: 30px;
+
   text-align: center;
-  color: var(--muted);
+
+  color: #9ca7a7;
+
   font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
+
+  letter-spacing: 0.5px;
 }
+
+/* LINK LOGIN / REGISTER */
 
 .bottom-link a {
-  color: var(--neon);
+  color: #76ffb3;
+
   text-decoration: none;
-  font-weight: bold;
+
+  font-weight: 700;
+
+  transition: 0.3s ease;
 }
 
+/* HOVER */
+
+.bottom-link a:hover {
+  color: white;
+
+  text-shadow:
+    0 0 8px rgba(118,255,179,0.9),
+    0 0 18px rgba(118,255,179,0.6);
+}
+
+/* REMOVE CORES DEFAULT DOS LINKS */
+
+.bottom-link a:visited,
+.bottom-link a:active,
+.bottom-link a:focus {
+  color: #76ffb3;
+}
+
+/* ERRO */
+
 .error {
-  margin-top: 14px;
+  margin-top: 18px;
+
   color: #ff7a7a;
+
   text-align: center;
+
   font-family: Arial, sans-serif;
+
+  font-size: 13px;
+
+  line-height: 1.5;
 }

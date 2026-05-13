@@ -1,5 +1,22 @@
 import mongoose from "mongoose";
 
+const favoriteSchema = new mongoose.Schema(
+  {
+    title: String,
+    summary: String,
+    genre: String,
+    year: Number,
+    duration: String,
+    rating: Number,
+    image: String,
+    trailer: String,
+    type: String
+  },
+  {
+    _id: false
+  }
+);
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -33,12 +50,10 @@ const userSchema = new mongoose.Schema(
       required: true
     },
 
-    favorites: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Content"
-      }
-    ]
+    favorites: {
+      type: [favoriteSchema],
+      default: []
+    }
   },
   {
     timestamps: true

@@ -61,13 +61,13 @@ export class RegisterComponent {
         }, 1500);
       },
       error: (err) => {
-        console.error('Register error:', err);
+  console.error('Register error:', err);
 
-        this.errorMessage =
-          err.error?.message || 'Unable to create account';
+  this.errorMessage =
+    err.error?.message || 'Unable to create account';
 
-        this.successMessage = '';
-      }
+  this.successMessage = '';
+}
     });
   }
 }
