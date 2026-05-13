@@ -34,12 +34,6 @@
   text-shadow: 0 0 14px rgba(118, 255, 179, 0.45);
 }
 
-.subtitle {
-  color: #cfe7e1;
-  max-width: 600px;
-  line-height: 1.5;
-}
-
 .empty {
   max-width: 650px;
   margin: 80px auto 0;
@@ -63,6 +57,7 @@
 }
 
 .empty p {
+  font-family: Arial, sans-serif;
   color: #d7eeee;
 }
 
@@ -115,7 +110,8 @@
 }
 
 .favorite-info p {
-  font-size: 13px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
   color: #d7eeee;
   line-height: 1.5;
   margin-bottom: 18px;
@@ -139,23 +135,21 @@
 }
 
 .remove-btn {
-  width: 100%;
-  padding: 11px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(118, 255, 179, 0.6);
-  background: transparent;
   color: #76ffb3;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.25s ease;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(118, 255, 179, 0.45);
+  background: rgba(118, 255, 179, 0.08);
+  transition: 0.3s ease;
 }
 
 .remove-btn:hover {
-  background: #76ffb3;
-  color: #060707;
-  box-shadow: 0 0 16px rgba(118, 255, 179, 0.5);
+color: white;
+  background: rgba(118, 255, 179, 0.25);
+  box-shadow: 0 0 14px rgba(118, 255, 179, 0.8);
 }
+
+/*ecras pequenos */
 
 @media (max-width: 768px) {
   .favorites-page {
@@ -170,8 +164,6 @@
     grid-template-columns: repeat(2, minmax(130px.1fr));
   }
 }
-
-/*ecras pequenos */
 
 @media (max-width: 480px) {
   .favorites-grid {
