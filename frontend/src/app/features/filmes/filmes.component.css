@@ -23,8 +23,8 @@
     0 0 18px rgba(118, 255, 179, 0.18),
     inset 0 0 10px rgba(118, 255, 179, 0.05);
   backdrop-filter: blur(12px);
-  width: 220px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,21 @@
 
 .details-panel p {
   margin: 14px 0;
-  font-size: 15px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.side-panel h2 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.summary {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #d7eeee;
+  max-height: 95px;
+  overflow: hidden;
 }
 
 /* POSTER PRINCIPAL */
@@ -82,6 +96,7 @@
   border: none;
   border-radius: 28px;
 }
+
 
 /* FILA FILMES */
 
@@ -165,7 +180,7 @@
 .favorite-btn:hover {
   color: white;
   box-shadow: 0 0 14px rgba(118, 255, 179, 0.8);
-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .active-favorite {
@@ -176,20 +191,20 @@ transform: scale(1.1);
 
 /* Adaptacao para ecras pequenos */
 
-/* Em vez de width: 520px */
+
 .main-poster {
   width: 100%;
   max-width: 520px;
 }
 
-/* Em vez de width: 220px height: 220px */
 .side-panel,
 .details-panel {
-  width: 100%;
-  max-width: 220px;
-  height: auto; /* <- isto é importante */
+  width: 200px;
+  min-width: 200px;
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
 }
-
 
 @media (max-width: 900px) {
   .featured {
@@ -199,8 +214,11 @@ transform: scale(1.1);
 
   .side-panel,
   .details-panel {
-    width: 90%;
-    max-width: 100%;
+    width: 220px;
+    min-width: 220px;
+    height: 240px;
+    min-height: 240px;
+    max-height: 240px;
   }
 
   .main-poster {

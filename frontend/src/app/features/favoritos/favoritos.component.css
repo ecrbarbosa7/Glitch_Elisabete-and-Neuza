@@ -34,12 +34,6 @@
   text-shadow: 0 0 14px rgba(118, 255, 179, 0.45);
 }
 
-.subtitle {
-  color: #cfe7e1;
-  max-width: 600px;
-  line-height: 1.5;
-}
-
 .empty {
   max-width: 650px;
   margin: 80px auto 0;
@@ -63,6 +57,7 @@
 }
 
 .empty p {
+  font-family: Arial, sans-serif;
   color: #d7eeee;
 }
 
@@ -115,7 +110,8 @@
 }
 
 .favorite-info p {
-  font-size: 13px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
   color: #d7eeee;
   line-height: 1.5;
   margin-bottom: 18px;
