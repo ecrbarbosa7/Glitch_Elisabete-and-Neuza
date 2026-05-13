@@ -5,14 +5,15 @@ import { FilmesComponent } from './features/filmes/filmes.component';
 import { SeriesComponent } from './features/series/series.component';
 import { FavoritosComponent } from './features/favoritos/favoritos.component';
 
-import { LandingComponent } from './pages/landing/landing.component';
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 
 export const routes: Routes = [
+
   {
     path: '',
-    component: LandingComponent
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
 
   {
