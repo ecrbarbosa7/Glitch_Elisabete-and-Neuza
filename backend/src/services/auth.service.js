@@ -3,7 +3,6 @@ import User from "../models/user.model.js";
 import { generateToken } from "./token.service.js";
 
 async function registerUser(userData) {
-
   const {
     name,
     surname,
@@ -12,33 +11,27 @@ async function registerUser(userData) {
     password
   } = userData;
 
-  // PASSWORD VALIDATION
   if (!password || password.length < 6) {
-    throw new Error(
-      "Password must contain at least 6 characters"
-    );
+    throw new Error("Password must contain at least 6 characters");
   }
 
-  // CHECK IF EMAIL ALREADY EXISTS
   const existingUser = await User.findOne({ email });
 
   if (existingUser) {
     throw new Error("Email already exists");
   }
 
-  // HASH PASSWORD
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // CREATE USER
   const user = await User.create({
     name,
     surname,
     address,
     email,
-    password: hashedPassword
+    password: hashedPassword,
+    favorites: []
   });
 
-  // GENERATE TOKEN
   const token = generateToken(user._id);
 
   return {
@@ -54,7 +47,6 @@ async function registerUser(userData) {
 }
 
 async function loginUser(loginData) {
-
   const { login, password } = loginData;
 
   const user = await User.findOne({

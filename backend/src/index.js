@@ -14,7 +14,10 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
@@ -27,5 +30,8 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3000, () => {
+
   console.log('Servidor a correr na porta 3000');
 });
+
+  
