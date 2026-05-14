@@ -1,15 +1,13 @@
 import { Routes } from '@angular/router';
 
-/*Estos componentes representan las páginas principales de la aplicación.*/
-
 import { HomeComponent } from './features/home/home.component';
 import { FilmesComponent } from './features/filmes/filmes.component';
 import { SeriesComponent } from './features/series/series.component';
 import { FavoritosComponent } from './features/favoritos/favoritos.component';
 
-
-/*Las rutas de Angular controlan la navegación entre páginas.*/
-
+import { LoginComponent } from '../../pages/login/login.component';
+import { RegisterComponent } from '../../pages/register/register.component';
+import { authGuard } from './auth.guard';
 export const routes: Routes = [
 
   {
@@ -35,8 +33,17 @@ export const routes: Routes = [
 
   {
     path: 'favorites',
-    component: FavoritosComponent
-  }
- 
+    component: FavoritosComponent,
+    canActivate: [authGuard]
+  },
 
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
+  {
+    path: 'register',
+    component: RegisterComponent
+  }
 ];

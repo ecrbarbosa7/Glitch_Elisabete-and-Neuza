@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+
+import { AuthService } from '../../../../services/auth.services';
 
 @Component({
   selector: 'app-home',
 
-  // Componente independiente
   standalone: true,
 
   imports: [RouterLink],
@@ -13,4 +14,19 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.component.css'
 })
 
-export class HomeComponent {}
+export class HomeComponent {
+
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
+
+  logout() {
+
+    this.auth.logout();
+
+    console.log('User logged out successfully');
+
+    this.router.navigate(['/']);
+  }
+}

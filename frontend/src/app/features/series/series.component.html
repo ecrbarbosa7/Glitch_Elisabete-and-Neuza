@@ -9,13 +9,26 @@
     </div>
 
     <div class="main-poster">
-      <iframe
-        [src]="sanitizeUrl(selectedSerie.trailer)"
-        title="Series Trailer"
-        frameborder="0"
-        allowfullscreen
-      >
-      </iframe>
+      <ng-container *ngIf="isLoggedIn(); else lockedTrailer">
+        <iframe
+          [src]="sanitizeUrl(selectedSerie.trailer)"
+          title="Series Trailer"
+          frameborder="0"
+          allowfullscreen
+        >
+        </iframe>
+      </ng-container>
+
+      <ng-template #lockedTrailer>
+        <div class="locked-content" (click)="goToRegister()">
+          <img [src]="selectedSerie.image" [alt]="selectedSerie.title" />
+
+          <div class="locked-overlay">
+            <h3>Register to watch</h3>
+            <p>Create an account to access trailers and full content.</p>
+          </div>
+        </div>
+      </ng-template>
     </div>
 
     <div class="details-panel">

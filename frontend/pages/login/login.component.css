@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap');
+
+:host {
+  --text: #f2f5f5;
+  --muted: #9ca7a7;
+  --neon: #76ffb3;
+
+  display: block;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at left center, rgba(118,255,179,0.08), transparent 25%),
+    linear-gradient(180deg, #050606 0%, #0a0d0d 100%);
+  color: var(--text);
+  font-family: "Orbitron", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(118,255,179,0.18);
+  background: rgba(255,255,255,0.03);
+  box-shadow:
+    0 0 30px rgba(118,255,179,0.08),
+    inset 0 0 20px rgba(255,255,255,0.02);
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo-section img {
+  width: 70px;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 0 12px rgba(118,255,179,0.4));
+}
+
+.logo-section h1 {
+  margin: 0;
+  font-size: 42px;
+  letter-spacing: 5px;
+}
+
+.logo-section p {
+  color: var(--neon);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.form-section h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.form-section input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(118,255,179,0.15);
+  background: rgba(255,255,255,0.04);
+  color: white;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.form-section input:focus {
+  outline: none;
+  border-color: var(--neon);
+  box-shadow: 0 0 12px rgba(118,255,179,0.2);
+}
+
+.form-section button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 999px;
+  background: var(--neon);
+  color: #050606;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 0 18px rgba(118,255,179,0.35);
+}
+.form-section button {
+  width: 100%;
+  padding: 15px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(118, 255, 179, 0.45);
+
+  background: rgba(118, 255, 179, 0.08);
+
+  color: #76ffb3;
+
+  font-weight: 800;
+  font-size: 15px;
+  font-family: "Orbitron", sans-serif;
+
+  cursor: pointer;
+
+  margin-top: 8px;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    0 0 18px rgba(118, 255, 179, 0.15);
+}
+
+.form-section button:hover {
+  color: white;
+
+  background: rgba(118, 255, 179, 0.25);
+
+  box-shadow:
+    0 0 14px rgba(118, 255, 179, 0.8);
+
+  transform: translateY(-2px);
+}
+
+/* TEXTO DE BAIXO */
+
+.bottom-link {
+  margin-top: 30px;
+
+  text-align: center;
+
+  color: #9ca7a7;
+
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+
+  letter-spacing: 0.5px;
+}
+
+/* LINK LOGIN / REGISTER */
+
+.bottom-link a {
+  color: #76ffb3;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition: 0.3s ease;
+}
+
+/* HOVER */
+
+.bottom-link a:hover {
+  color: white;
+
+  text-shadow:
+    0 0 8px rgba(118,255,179,0.9),
+    0 0 18px rgba(118,255,179,0.6);
+}
+
+/* REMOVE CORES DEFAULT DOS LINKS */
+
+.bottom-link a:visited,
+.bottom-link a:active,
+.bottom-link a:focus {
+  color: #76ffb3;
+}
+
+/* ERRO */
+
+.error {
+  margin-top: 18px;
+
+  color: #ff7a7a;
+
+  text-align: center;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}

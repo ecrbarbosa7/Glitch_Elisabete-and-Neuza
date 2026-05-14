@@ -6,13 +6,26 @@
     </div>
 
     <div class="main-poster">
-      <iframe
-        [src]="sanitizeUrl(selectedMovie.trailer)"
-        title="Movie Trailer"
-        frameborder="0"
-        allowfullscreen
-      >
-      </iframe>
+      <ng-container *ngIf="isLoggedIn(); else lockedTrailer">
+        <iframe
+          [src]="sanitizeUrl(selectedMovie.trailer)"
+          title="Movie Trailer"
+          frameborder="0"
+          allowfullscreen
+        >
+        </iframe>
+      </ng-container>
+
+      <ng-template #lockedTrailer>
+        <div class="locked-content" (click)="goToRegister()">
+          <img [src]="selectedMovie.image" [alt]="selectedMovie.title" />
+
+          <div class="locked-overlay">
+            <h3>Register to watch</h3>
+            <p>Create an account to access trailers and full content.</p>
+          </div>
+        </div>
+      </ng-template>
     </div>
 
     <div class="details-panel">
@@ -27,18 +40,16 @@
   </section>
 
   <div class="movie-row">
+    <div
+      class="movie-card"
+      *ngFor="let movie of movies"
+      (click)="selectMovie(movie)"
+      [class.active]="movie === selectedMovie"
+    >
+      <img [src]="movie.image" [alt]="movie.title" />
+      <span>{{ movie.title }}</span>
 
-  <div
-    class="movie-card"
-    *ngFor="let movie of movies"
-    (click)="selectMovie(movie)"
-    [class.active]="movie === selectedMovie"
-  >
-
-    <img [src]="movie.image" [alt]="movie.title" />
-    <span>{{ movie.title }}</span>
-
-    <button
+      <button
         type="button"
         class="favorite-btn"
         [class.active-favorite]="isFavorite(movie)"
@@ -46,7 +57,6 @@
       >
         ♥
       </button>
-
+    </div>
   </div>
-
 </div>
