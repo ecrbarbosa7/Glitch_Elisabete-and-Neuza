@@ -1,32 +1,19 @@
 <div class="movies-page">
-  <section class="featured">
+  <section class="featured" *ngIf="selectedMovie">
     <div class="side-panel">
       <h2>{{ selectedMovie.title }}</h2>
       <p class="summary">{{ selectedMovie.summary }}</p>
     </div>
 
     <div class="main-poster">
-      <ng-container *ngIf="isLoggedIn(); else lockedTrailer">
-        <iframe
-          [src]="sanitizeUrl(selectedMovie.trailer)"
-          title="Movie Trailer"
-          frameborder="0"
-          allowfullscreen
-        >
-        </iframe>
-      </ng-container>
-
-      <ng-template #lockedTrailer>
-        <div class="locked-content" (click)="goToRegister()">
-          <img [src]="selectedMovie.image" [alt]="selectedMovie.title" />
-
-          <div class="locked-overlay">
-            <h3>Register to watch</h3>
-            <p>Create an account to access trailers and full content.</p>
-          </div>
-        </div>
-      </ng-template>
-    </div>
+  <iframe
+    [src]="sanitizeUrl(selectedMovie.trailer)"
+    title="Movie Trailer"
+    frameborder="0"
+    allowfullscreen
+  >
+  </iframe>
+</div>
 
     <div class="details-panel">
       <p>Genre: {{ selectedMovie.genre }}</p>

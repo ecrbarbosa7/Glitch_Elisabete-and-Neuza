@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,30 +13,43 @@ import { AuthService } from '../../../../services/auth.services';
   styleUrls: ['./filmes.component.css']
 })
 export class FilmesComponent implements OnInit {
-
   movies: any[] = [];
-  selectedMovie: any;
+  selectedMovie: any = null;
   favorites: any[] = [];
 
   constructor(
     private sanitizer: DomSanitizer,
     private movieService: MovieService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe((data) => {
-      this.movies = data;
-      this.selectedMovie = data[0];
-    });
+    this.loadMovies();
 
     if (this.isLoggedIn()) {
       this.loadFavorites();
     }
   }
 
-  loadFavorites() {
+  loadMovies(): void {
+  this.movieService.getMovies().subscribe({
+    next: (data) => {
+      this.movies = data;
+
+      if (data && data.length > 0) {
+        this.selectedMovie = data[0];
+      }
+      this.cdRef.detectChanges();
+    },
+    error: (err) => {
+      console.error('Error loading movies:', err);
+    }
+  });
+} 
+
+  loadFavorites(): void {
     this.auth.getFavorites().subscribe({
       next: (res) => {
         this.favorites = res.favorites || [];
@@ -47,19 +60,19 @@ export class FilmesComponent implements OnInit {
     });
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return this.auth.isLoggedIn();
   }
 
-  goToRegister() {
+  goToRegister(): void {
     this.router.navigate(['/register']);
   }
 
-  selectMovie(movie: any) {
+  selectMovie(movie: any): void {
     this.selectedMovie = movie;
   }
 
-  getStars(rating: number) {
+  getStars(rating: number): string {
     return '★'.repeat(Math.floor(rating / 2));
   }
 
@@ -67,7 +80,7 @@ export class FilmesComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-  toggleFavorite(item: any) {
+  toggleFavorite(item: any): void {
     if (!this.isLoggedIn()) {
       this.goToRegister();
       return;
@@ -82,7 +95,6 @@ export class FilmesComponent implements OnInit {
           console.error('Error removing favorite:', err);
         }
       });
-
       return;
     }
 
@@ -99,7 +111,7 @@ export class FilmesComponent implements OnInit {
     });
   }
 
-  isFavorite(item: any) {
+  isFavorite(item: any): boolean {
     if (!this.isLoggedIn()) {
       return false;
     }
