@@ -2,14 +2,12 @@
   <section class="featured">
     <div class="side-panel">
       <h2>{{ selectedSerie.title }}</h2>
-
       <p class="summary">
         {{ selectedSerie.summary }}
       </p>
     </div>
 
     <div class="main-poster">
-      <ng-container *ngIf="isLoggedIn(); else lockedTrailer">
         <iframe
           [src]="sanitizeUrl(selectedSerie.trailer)"
           title="Series Trailer"
@@ -17,19 +15,7 @@
           allowfullscreen
         >
         </iframe>
-      </ng-container>
-
-      <ng-template #lockedTrailer>
-        <div class="locked-content" (click)="goToRegister()">
-          <img [src]="selectedSerie.image" [alt]="selectedSerie.title" />
-
-          <div class="locked-overlay">
-            <h3>Register to watch</h3>
-            <p>Create an account to access trailers and full content.</p>
-          </div>
-        </div>
-      </ng-template>
-    </div>
+    </div>  
 
     <div class="details-panel">
       <p>Genre: {{ selectedSerie.genre }}</p>
