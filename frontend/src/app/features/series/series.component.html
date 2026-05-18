@@ -1,5 +1,5 @@
 <div class="serie-page">
-  <section class="featured">
+  <section class="featured" *ngIf="selectedSerie">
     <div class="side-panel">
       <h2>{{ selectedSerie.title }}</h2>
       <p class="summary">
@@ -8,6 +8,7 @@
     </div>
 
     <div class="main-poster">
+      <ng-container *ngIf="isLoggedIn(); else lockedTrailer">
         <iframe
           [src]="sanitizeUrl(selectedSerie.trailer)"
           title="Series Trailer"
@@ -15,15 +16,19 @@
           allowfullscreen
         >
         </iframe>
-    </div>  
+      </ng-container>
+
+      <ng-template #lockedTrailer>
+        <div class="locked-content" (click)="goToRegister()">
+          <img [src]="selectedSerie.image" [alt]="selectedSerie.title" />
+        </div>
+      </ng-template>
+    </div>
 
     <div class="details-panel">
       <p>Genre: {{ selectedSerie.genre }}</p>
-
       <p>Year: {{ selectedSerie.year }}</p>
-
       <p>Duration: {{ selectedSerie.duration }}</p>
-
       <p>
         Rating: {{ selectedSerie.rating }}
         {{ getStars(selectedSerie.rating) }}

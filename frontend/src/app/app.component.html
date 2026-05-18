@@ -24,6 +24,14 @@
       Favorites
     </a>
 
+    <!-- APENAS ADMIN -->
+    <a
+      *ngIf="isLoggedIn() && isAdmin()"
+      routerLink="/admin"
+    >
+      Admin
+    </a>
+
     <!-- APENAS VISITANTE -->
     <a
       *ngIf="!isLoggedIn()"

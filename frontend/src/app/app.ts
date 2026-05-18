@@ -34,6 +34,9 @@ export class App {
   isLoggedIn() {
     return this.auth.isLoggedIn();
   }
+  isAdmin() {
+    return this.auth.isAdmin();
+  }
 
   logout() {
 

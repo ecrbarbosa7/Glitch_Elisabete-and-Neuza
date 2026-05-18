@@ -6,14 +6,28 @@
     </div>
 
     <div class="main-poster">
-  <iframe
-    [src]="sanitizeUrl(selectedMovie.trailer)"
-    title="Movie Trailer"
-    frameborder="0"
-    allowfullscreen
-  >
-  </iframe>
-</div>
+      <ng-container *ngIf="isLoggedIn(); else lockedTrailer">
+        <iframe
+          [src]="sanitizeUrl(selectedMovie.trailer)"
+          title="Movie Trailer"
+          frameborder="0"
+          allowfullscreen
+        >
+        </iframe>
+      </ng-container>
+
+      <ng-template #lockedTrailer>
+        <div
+          class="locked-content"
+          (click)="goToRegister()"
+        >
+          <img
+            [src]="selectedMovie.image"
+            [alt]="selectedMovie.title"
+          />
+        </div>
+      </ng-template>
+    </div>
 
     <div class="details-panel">
       <p>Genre: {{ selectedMovie.genre }}</p>

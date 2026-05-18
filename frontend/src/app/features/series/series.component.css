@@ -280,4 +280,15 @@
   margin: 0;
   color: #f2f5f5;
 }
+.locked-content {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.locked-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 }
