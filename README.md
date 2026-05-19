@@ -4,18 +4,18 @@
 
 GLITCH es una plataforma web inspirada en servicios de streaming, centrada en contenidos de ciencia ficción.
 
-Permite a los usuarios:
+La aplicación permite a los usuarios:
 
-- explorar películas y series
-- ver detalles
-- guardar favoritos
-- interactuar con una interfaz moderna
+ - Explorar películas y series
+ - Visualizar detalles de contenido
+ - Guardar favoritos
+ - Disfrutar de una interfaz moderna y responsiva
 
-También incluye un área de administración para la gestión de contenidos.
+También incluye un panel de administración para la gestión completa de contenidos.
 
 ---
 
-⚙️ Tecnologías
+⚙️ Tecnologías Utilizadas
 
 Frontend
 
@@ -60,37 +60,41 @@ http://localhost:4200
 👥 Tipos de Usuario
 
 - Visitante → ver contenidos
-- Usuario → login, favoritos
-- Admin → gestionar contenidos (CRUD)
+- Usuario → login, ver películas/series ,favoritos 
+- Admin → Gestión completa (CRUD)
 
 ---
 
-🔐 Autenticación
+🔐 Autenticación y Seguridad
 
-- Sistema basado en JWT
-- Rutas protegidas con middleware
-- Permisos según el tipo de usuario
+- Autenticación basado en JWT
+- Middleware de protección de rutas
+- Control de permisos por tipo de usuario
 
 ---
 
-⭐ Funcionalidades
+⭐ Funcionalidades Principales
 
 - Registro y login
 - Sistema de favoritos
 - Página de detalles
 - Interfaz moderna
-- Área de administración
+- Panel de administración
+- Crud de películas y series
 
 ---
 
-🎯 Objetivo
+🎯 Objetivo del Proyecto
 
-Demostrar conocimientos de:
+Este proyecto fue desarrollado para demostrar conocimientos en:
 
 - frontend + backend
-- autenticación con JWT
-- APIs y CRUD
-- UX/UI moderno
+- Angular + Node.js
+- APIs REST
+- MongoBD
+- CRUD Operations
+- Autenticación con JWT
+- Diseño UX/UI moderno
 
 ---
 
