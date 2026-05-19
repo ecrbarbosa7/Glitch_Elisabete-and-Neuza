@@ -50,15 +50,16 @@ export class FilmesComponent implements OnInit {
 } 
 
   loadFavorites(): void {
-    this.auth.getFavorites().subscribe({
-      next: (res) => {
-        this.favorites = res.favorites || [];
-      },
-      error: (err) => {
-        console.error('Error loading favorites:', err);
-      }
-    });
-  }
+  this.auth.getFavorites().subscribe({
+    next: (res) => {
+      this.favorites = res.favorites || [];
+      this.cdRef.detectChanges();
+    },
+    error: (err) => {
+      console.error('Error loading favorites:', err);
+    }
+  });
+}
 
   isLoggedIn(): boolean {
     return this.auth.isLoggedIn();
@@ -81,35 +82,38 @@ export class FilmesComponent implements OnInit {
   }
 
   toggleFavorite(item: any): void {
-    if (!this.isLoggedIn()) {
-      this.goToRegister();
-      return;
-    }
+  if (!this.isLoggedIn()) {
+    this.goToRegister();
+    return;
+  }
 
-    if (this.isFavorite(item)) {
-      this.auth.removeFavorite(item.title).subscribe({
-        next: (res) => {
-          this.favorites = res.favorites || [];
-        },
-        error: (err) => {
-          console.error('Error removing favorite:', err);
-        }
-      });
-      return;
-    }
-
-    this.auth.addFavorite({
-      ...item,
-      type: 'movie'
-    }).subscribe({
+  if (this.isFavorite(item)) {
+    this.auth.removeFavorite(item.title).subscribe({
       next: (res) => {
         this.favorites = res.favorites || [];
+        this.cdRef.detectChanges();
       },
       error: (err) => {
-        console.error('Error adding favorite:', err);
+        console.error('Error removing favorite:', err);
       }
     });
+
+    return;
   }
+
+  this.auth.addFavorite({
+    ...item,
+    type: 'movie'
+  }).subscribe({
+    next: (res) => {
+      this.favorites = res.favorites || [];
+      this.cdRef.detectChanges();
+    },
+    error: (err) => {
+      console.error('Error adding favorite:', err);
+    }
+  });
+}
 
   isFavorite(item: any): boolean {
     if (!this.isLoggedIn()) {

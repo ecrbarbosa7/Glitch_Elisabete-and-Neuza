@@ -50,16 +50,17 @@ export class SeriesComponent implements OnInit {
     });
   }
 
-  loadFavorites() {
-    this.auth.getFavorites().subscribe({
-      next: (res) => {
-        this.favorites = res.favorites || [];
-      },
-      error: (err) => {
-        console.error('Error loading favorites:', err);
-      }
-    });
-  }
+  loadFavorites(): void {
+  this.auth.getFavorites().subscribe({
+    next: (res) => {
+      this.favorites = res.favorites || [];
+      this.cdr.detectChanges();
+    },
+    error: (err) => {
+      console.error('Error loading favorites:', err);
+    }
+  });
+}
 
   isLoggedIn() {
     return this.auth.isLoggedIn();
@@ -81,37 +82,39 @@ export class SeriesComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-  toggleFavorite(item: any) {
-    if (!this.isLoggedIn()) {
-      this.goToRegister();
-      return;
-    }
+toggleFavorite(item: any) {
+  if (!this.isLoggedIn()) {
+    this.goToRegister();
+    return;
+  }
 
-    if (this.isFavorite(item)) {
-      this.auth.removeFavorite(item.title).subscribe({
-        next: (res) => {
-          this.favorites = res.favorites || [];
-        },
-        error: (err) => {
-          console.error('Error removing favorite:', err);
-        }
-      });
-
-      return;
-    }
-
-    this.auth.addFavorite({
-      ...item,
-      type: 'series'
-    }).subscribe({
+  if (this.isFavorite(item)) {
+    this.auth.removeFavorite(item.title).subscribe({
       next: (res) => {
         this.favorites = res.favorites || [];
+        this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Error adding favorite:', err);
+        console.error('Error removing favorite:', err);
       }
     });
+
+    return;
   }
+
+  this.auth.addFavorite({
+    ...item,
+    type: 'series'
+  }).subscribe({
+    next: (res) => {
+      this.favorites = res.favorites || [];
+      this.cdr.detectChanges();
+    },
+    error: (err) => {
+      console.error('Error adding favorite:', err);
+    }
+  });
+}
 
   isFavorite(item: any) {
     if (!this.isLoggedIn()) {

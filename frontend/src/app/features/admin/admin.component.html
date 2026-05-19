@@ -7,19 +7,9 @@
     <h2>Add Movie</h2>
 
     <form class="admin-form" (ngSubmit)="createMovie()">
-      <input
-        type="text"
-        placeholder="Title"
-        [(ngModel)]="movie.title"
-        name="movieTitle"
-      />
+      <input type="text" placeholder="Title" [(ngModel)]="movie.title" name="movieTitle" />
 
-      <input
-        type="text"
-        placeholder="Genre"
-        [(ngModel)]="movie.genre"
-        name="movieGenre"
-      />
+      <input type="text" placeholder="Genre" [(ngModel)]="movie.genre" name="movieGenre" />
 
       <input
         type="text"
@@ -29,12 +19,7 @@
         name="movieYear"
       />
 
-      <input
-        type="text"
-        placeholder="Duration"
-        [(ngModel)]="movie.duration"
-        name="movieDuration"
-      />
+      <input type="text" placeholder="Duration" [(ngModel)]="movie.duration" name="movieDuration" />
 
       <input
         type="text"
@@ -44,12 +29,7 @@
         name="movieRating"
       />
 
-      <input
-        type="text"
-        placeholder="Image URL"
-        [(ngModel)]="movie.image"
-        name="movieImage"
-      />
+      <input type="text" placeholder="Image URL" [(ngModel)]="movie.image" name="movieImage" />
 
       <input
         type="text"
@@ -58,11 +38,7 @@
         name="movieTrailer"
       />
 
-      <textarea
-        placeholder="Summary"
-        [(ngModel)]="movie.summary"
-        name="movieSummary"
-      ></textarea>
+      <textarea placeholder="Summary" [(ngModel)]="movie.summary" name="movieSummary"></textarea>
 
       <button type="submit">Add Movie</button>
     </form>
@@ -73,19 +49,9 @@
     <h2>Add Series</h2>
 
     <form class="admin-form" (ngSubmit)="createSerie()">
-      <input
-        type="text"
-        placeholder="Title"
-        [(ngModel)]="serie.title"
-        name="serieTitle"
-      />
+      <input type="text" placeholder="Title" [(ngModel)]="serie.title" name="serieTitle" />
 
-      <input
-        type="text"
-        placeholder="Genre"
-        [(ngModel)]="serie.genre"
-        name="serieGenre"
-      />
+      <input type="text" placeholder="Genre" [(ngModel)]="serie.genre" name="serieGenre" />
 
       <input
         type="text"
@@ -95,12 +61,7 @@
         name="serieYear"
       />
 
-      <input
-        type="text"
-        placeholder="Duration"
-        [(ngModel)]="serie.duration"
-        name="serieDuration"
-      />
+      <input type="text" placeholder="Duration" [(ngModel)]="serie.duration" name="serieDuration" />
 
       <input
         type="text"
@@ -110,12 +71,7 @@
         name="serieRating"
       />
 
-      <input
-        type="text"
-        placeholder="Image URL"
-        [(ngModel)]="serie.image"
-        name="serieImage"
-      />
+      <input type="text" placeholder="Image URL" [(ngModel)]="serie.image" name="serieImage" />
 
       <input
         type="text"
@@ -124,11 +80,7 @@
         name="serieTrailer"
       />
 
-      <textarea
-        placeholder="Summary"
-        [(ngModel)]="serie.summary"
-        name="serieSummary"
-      ></textarea>
+      <textarea placeholder="Summary" [(ngModel)]="serie.summary" name="serieSummary"></textarea>
 
       <button type="submit">Add Series</button>
     </form>
@@ -142,11 +94,11 @@
       <div class="admin-card" *ngFor="let movie of movies">
         <img [src]="movie.image" [alt]="movie.title" />
 
-        <h3>{{ movie.title }}</h3>
-
-        <p>{{ movie.genre }} | {{ movie.year }}</p>
-
-        <button (click)="deleteMovie(movie._id)">Delete</button>
+        <div class="admin-card-content">
+          <h3>{{ movie.title }}</h3>
+          <p>{{ movie.genre }} | {{ movie.year }}</p>
+          <button (click)="deleteMovie(movie._id)">Delete</button>
+        </div>
       </div>
     </div>
   </section>
@@ -159,11 +111,11 @@
       <div class="admin-card" *ngFor="let serie of series">
         <img [src]="serie.image" [alt]="serie.title" />
 
-        <h3>{{ serie.title }}</h3>
-
-        <p>{{ serie.genre }} | {{ serie.year }}</p>
-
-        <button (click)="deleteSerie(serie._id)">Delete</button>
+        <div class="admin-card-content">
+          <h3>{{ serie.title }}</h3>
+          <p>{{ serie.genre }} | {{ serie.year }}</p>
+          <button (click)="deleteSerie(serie._id)">Delete</button>
+        </div>
       </div>
     </div>
   </section>
