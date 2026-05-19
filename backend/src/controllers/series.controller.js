@@ -2,7 +2,13 @@ import Series from "../models/series.model.js";
 
 export async function getSeries(req, res) {
   try {
-    const series = await Series.find({});
+    const series = await Series.find({
+      $or: [
+        { isDeleted: false },
+        { isDeleted: { $exists: false } }
+      ]
+    });
+
     res.json(series);
   } catch (error) {
     res.status(500).json({ message: "Erro ao buscar séries" });
@@ -23,9 +29,11 @@ export async function createSerie(req, res) {
 
 export async function updateSerie(req, res) {
   try {
-    const serie = await Series.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
-    });
+    const serie = await Series.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
 
     res.json(serie);
   } catch (error) {
@@ -35,8 +43,12 @@ export async function updateSerie(req, res) {
 
 export async function deleteSerie(req, res) {
   try {
-    await Series.findByIdAndDelete(req.params.id);
-    res.json({ message: "Série apagada com sucesso" });
+    await Series.findByIdAndUpdate(
+      req.params.id,
+      { isDeleted: true }
+    );
+
+    res.json({ message: "Série removida com sucesso" });
   } catch (error) {
     res.status(400).json({ message: "Erro ao apagar série" });
   }

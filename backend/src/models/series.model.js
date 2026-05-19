@@ -39,7 +39,12 @@ const seriesSchema = new mongoose.Schema({
   trailer: {
     type: String,
     required: true
-  }
+  },
+  isDeleted: {
+  type: Boolean,
+  default: false
+}
+  
 });
 
 export default mongoose.model("Serie", seriesSchema);

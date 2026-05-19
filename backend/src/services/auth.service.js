@@ -43,7 +43,7 @@ async function registerUser(userData) {
     favorites: []
   });
 
-  const token = generateToken(user._id);
+ const token = generateToken(user._id, user.role);
 
   return {
     user: {
@@ -88,7 +88,7 @@ async function loginUser(loginData) {
     await user.save();
   }
 
-  const token = generateToken(user._id);
+const token = generateToken(user._id, user.role);
 
   return {
     user: {

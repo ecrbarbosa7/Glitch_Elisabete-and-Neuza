@@ -9,6 +9,7 @@ import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 
 import { authGuard } from './auth.guard';
+import { adminGuard } from './admin.guard';
 
 export const routes: Routes = [
   {
@@ -29,13 +30,14 @@ export const routes: Routes = [
     component: SeriesComponent
   },
   {
-    path: 'favorites',
-    component: FavoritosComponent
+  path: 'favorites',
+  component: FavoritosComponent,
+  canActivate: [authGuard]
   },
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [authGuard]
+    canActivate: [adminGuard]
   },
   {
     path: 'login',

@@ -39,7 +39,7 @@ export class AuthService {
   isAdmin() {
     const user = this.getUser();
     return user?.role === 'admin';
-    console.log(user);
+  
   }
 
   logout() {
