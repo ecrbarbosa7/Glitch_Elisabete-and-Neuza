@@ -103,11 +103,12 @@
 .movie-row {
   display: flex;
   gap: 18px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   overflow-x: auto;
   padding: 38px 0 8px;
+  scroll-padding-left: 8px;
 }
 
 .movie-row::-webkit-scrollbar {
