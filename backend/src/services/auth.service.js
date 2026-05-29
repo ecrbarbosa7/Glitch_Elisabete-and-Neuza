@@ -2,14 +2,6 @@ import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 import { generateToken } from "./token.service.js";
 
-function getUserRole(email) {
-  const adminEmails = process.env.ADMIN_EMAILS
-    ? process.env.ADMIN_EMAILS.split(",").map((adminEmail) => adminEmail.trim())
-    : [];
-
-  return adminEmails.includes(email) ? "admin" : "user";
-}
-
 async function registerUser(userData) {
   const {
     name,
@@ -31,19 +23,17 @@ async function registerUser(userData) {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const role = getUserRole(email);
-
   const user = await User.create({
     name,
     surname,
     address,
     email,
     password: hashedPassword,
-    role,
+    role: "user",
     favorites: []
   });
 
- const token = generateToken(user._id, user.role);
+  const token = generateToken(user._id, user.role);
 
   return {
     user: {
@@ -81,14 +71,7 @@ async function loginUser(loginData) {
     throw new Error("Invalid credentials");
   }
 
-  const role = getUserRole(user.email);
-
-  if (user.role !== role) {
-    user.role = role;
-    await user.save();
-  }
-
-const token = generateToken(user._id, user.role);
+  const token = generateToken(user._id, user.role);
 
   return {
     user: {
