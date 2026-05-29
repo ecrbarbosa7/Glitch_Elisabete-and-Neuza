@@ -13,6 +13,8 @@ async function register(req, res) {
     });
 
   } catch (error) {
+    console.error("REGISTER ERROR:", error);
+
     return res.status(400).json({
       message: error.message
     });
